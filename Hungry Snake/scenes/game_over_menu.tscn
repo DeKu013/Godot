@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://bb2iicmtsv7i"]
+
+[ext_resource type="FontFile" uid="uid://r5ttqaxnuvgk" path="res://assets/MaldiniBold.ttf" id="1_l3vdl"]
+[ext_resource type="Script" path="res://scripts/game_over_menu.gd" id="1_ymtn4"]
+
+[sub_resource type="Theme" id="Theme_csn3k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8auxs"]
+bg_color = Color(0.215686, 0.278431, 0.792157, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.0705882, 0.054902, 0.0313726, 0.6)
+shadow_size = 50
+
+[node name="GameOverMenu" type="CanvasLayer"]
+script = ExtResource("1_ymtn4")
+
+[node name="GameOverPanel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -175.0
+offset_right = 200.0
+offset_bottom = 125.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme = SubResource("Theme_csn3k")
+theme_override_styles/panel = SubResource("StyleBoxFlat_8auxs")
+
+[node name="ResultLabel" type="Label" parent="."]
+offset_left = 332.0
+offset_top = 404.0
+offset_right = 660.0
+offset_bottom = 485.0
+theme_override_colors/font_color = Color(0.972549, 0.972549, 0.972549, 1)
+theme_override_fonts/font = ExtResource("1_l3vdl")
+theme_override_font_sizes/font_size = 60
+text = "GAME OVER!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RestartButton" type="Button" parent="."]
+offset_left = 381.0
+offset_top = 535.0
+offset_right = 613.0
+offset_bottom = 601.0
+theme_override_colors/icon_normal_color = Color(0.341176, 0.545098, 0.996078, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0.0823529, 1, 1)
+theme_override_colors/icon_hover_color = Color(0.411765, 0.596078, 1, 1)
+theme_override_fonts/font = ExtResource("1_l3vdl")
+theme_override_font_sizes/font_size = 45
+text = "Play Again"
+
+[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]

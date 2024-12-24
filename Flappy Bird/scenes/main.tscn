@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://bss3enuqre57j"]
+
+[ext_resource type="Texture2D" uid="uid://d38ceuoo614k4" path="res://assets/bg.png" id="1_bxums"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_t1odg"]
+[ext_resource type="PackedScene" uid="uid://cymu3kdw7fg8g" path="res://scenes/pipe.tscn" id="2_a8fgi"]
+[ext_resource type="PackedScene" uid="uid://dip6fh7boxhbi" path="res://scenes/bird.tscn" id="2_nfw7u"]
+[ext_resource type="PackedScene" uid="uid://dlvuilk0ugs0e" path="res://scenes/ground.tscn" id="4_wibx5"]
+[ext_resource type="FontFile" uid="uid://r5ttqaxnuvgk" path="res://assets/MaldiniBold.ttf" id="6_ciqt7"]
+[ext_resource type="PackedScene" uid="uid://f88ussjeym7g" path="res://scenes/game_over.tscn" id="7_71mnq"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_t1odg")
+pipe_scene = ExtResource("2_a8fgi")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_bxums")
+offset = Vector2(432, 384)
+
+[node name="Bird" parent="." instance=ExtResource("2_nfw7u")]
+position = Vector2(387, 331)
+
+[node name="Ground" parent="." instance=ExtResource("4_wibx5")]
+z_index = 1
+
+[node name="PipeTimer" type="Timer" parent="."]
+wait_time = 1.5
+
+[node name="ScoreLabel" type="Label" parent="."]
+z_index = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 50.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.929412, 0.929412, 0.929412, 1)
+theme_override_fonts/font = ExtResource("6_ciqt7")
+theme_override_font_sizes/font_size = 40
+text = "SCORE : 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOver" parent="." instance=ExtResource("7_71mnq")]
+
+[connection signal="hit" from="Ground" to="." method="_on_ground_hit"]
+[connection signal="timeout" from="PipeTimer" to="." method="_on_pipe_timer_timeout"]
+[connection signal="restart" from="GameOver" to="." method="_on_game_over_restart"]

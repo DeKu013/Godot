@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://cthgd0bhchbv3"]
+
+[ext_resource type="Script" path="res://entities/bullets/bullet.gd" id="1_c4cj3"]
+[ext_resource type="Texture2D" uid="uid://bnw6qe4c5gnad" path="res://assets/spacepixels-0.2.0/pixel_laser_yellow.png" id="2_dkejb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kqy5y"]
+size = Vector2(9.99997, 30.5046)
+
+[node name="Bullet" type="Node2D"]
+position = Vector2(192, 272)
+script = ExtResource("1_c4cj3")
+
+[node name="BulletSprite" type="Sprite2D" parent="."]
+position = Vector2(-4.76837e-06, 75.25)
+scale = Vector2(0.48, 0.427778)
+texture = ExtResource("2_dkejb")
+
+[node name="BulletArea" type="Area2D" parent="."]
+position = Vector2(0, 75.25)
+scale = Vector2(0.48, 0.427778)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletArea"]
+position = Vector2(0, -0.584447)
+shape = SubResource("RectangleShape2D_kqy5y")

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dhy56of52yp2b"]
+
+[ext_resource type="Script" path="res://scripts/coin.gd" id="1_o82ot"]
+[ext_resource type="PackedScene" uid="uid://dxgv5j0642a3" path="res://assets/coin.fbx" id="2_sj6rh"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rgc28"]
+top_radius = 0.3
+bottom_radius = 0.3
+height = 0.05
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_udeqf"]
+height = 0.05
+radius = 0.3
+
+[node name="Coin" type="Area3D"]
+transform = Transform3D(0.999584, -0.0288288, 0, 0.0288288, 0.999584, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("1_o82ot")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0237866, -0.999324, -0.0280185, 0, 0.0280264, -0.999607, 0.999717, 0.0237773, 0.000666654, 0, 0, 0)
+mesh = SubResource("CylinderMesh_rgc28")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.0396086, -0.999215, 0, 0.999215, 0.0396086, 0, 0, 0, 1, -0.00781801, 0, 0)
+shape = SubResource("CylinderShape3D_udeqf")
+
+[node name="Root Scene" parent="." instance=ExtResource("2_sj6rh")]
+transform = Transform3D(0.00316573, 1.11728, 0.0322234, 0.0021726, -0.0322296, 1.11728, 1.11774, -0.00310178, -0.00226297, 0.00995662, -0.000287157, 0.00520967)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
