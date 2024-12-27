@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3pc0dey462ri"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_eosg6"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dlred"]
+resource_local_to_scene = true
+radius = 0.25
+height = 1.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_erxk4"]
+radius = 0.25
+height = 1.0
+radial_segments = 50
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_iwpqj"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_eosg6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_dlred")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_erxk4")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_iwpqj")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.956935, 0.290301, 0, -0.290301, 0.956935, 0, 1.23262, 3.90474)

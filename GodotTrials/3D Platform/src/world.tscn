@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqlfuaely0ufh"]
+
+[ext_resource type="PackedScene" uid="uid://cg0e35lev80q3" path="res://src/platform.tscn" id="1_8qb8o"]
+[ext_resource type="PackedScene" uid="uid://ctjm0elf31csi" path="res://src/player/character.tscn" id="2_s4qyj"]
+
+[node name="World" type="Node3D"]
+
+[node name="Platform" parent="." instance=ExtResource("1_8qb8o")]
+
+[node name="Platform2" parent="." instance=ExtResource("1_8qb8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.49595, 3.24803, -10.9586)
+
+[node name="Platform3" parent="." instance=ExtResource("1_8qb8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.6428, 1.86402, 1.2365)
+
+[node name="player" parent="." instance=ExtResource("2_s4qyj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000797272, 1.82092, -0.00910854)
+
+[node name="Camera3D" type="Camera3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0.0059464, 1.70145, 3.48628)
+fov = 75.3415
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 15.4994, 0)
+shadow_enabled = true
